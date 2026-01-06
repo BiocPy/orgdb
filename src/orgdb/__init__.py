@@ -14,3 +14,9 @@ except PackageNotFoundError:  # pragma: no cover
     __version__ = "unknown"
 finally:
     del version, PackageNotFoundError
+
+from .orgdb import OrgDb
+from .orgdbregistry import OrgDbRegistry
+from .record import OrgDbRecord
+
+__all__ = ["OrgDb", "OrgDbRegistry", "OrgDbRecord"]
