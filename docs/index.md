@@ -1,18 +1,14 @@
 # orgdb
 
-Access OrgDB annotations
+**OrgDb** provides an interface to access and query **Organism Database (OrgDb)** SQLite files in Python. It mirrors functionality from the R/Bioconductor `AnnotationDbi` package, enabling seamless integration of organism-wide gene annotation into Python workflows.
 
+## Install
 
-## Note
+To get started, install the package from [PyPI](https://pypi.org/project/orgdb/)
 
-> This is the main page of your project's [Sphinx] documentation. It is
-> formatted in [Markdown]. Add additional pages by creating md-files in
-> `docs` or rst-files (formatted in [reStructuredText]) and adding links to
-> them in the `Contents` section below.
->
-> Please check [Sphinx] and [MyST] for more information
-> about how to document your project and how to configure your preferences.
-
+```bash
+pip install orgdb
+```
 
 ## Contents
 
