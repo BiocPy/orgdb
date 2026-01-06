@@ -387,6 +387,61 @@ class OrgDb:
         """List all available keytypes (same as columns)."""
         return self.columns()
 
+    def keys(self, keytype: str) -> List[str]:
+        """Return keys for the given keytype."""
+        if keytype not in self._table_map:
+            raise ValueError(f"Invalid keytype: {keytype}. Use columns() to see valid options.")
+
+        table, field = self._table_map[keytype]
+        query = f"SELECT DISTINCT {field} FROM {table}"
+
+        # check if table exists or let sqlite fail
+        try:
+            bf = self._query_as_biocframe(query)
+            if bf.shape[0] > 0:
+                return [str(x) for x in bf.get_column(field)]
+            return []
+        except sqlite3.OperationalError:
+            return []
+
+    def genes(self) -> GenomicRanges:
+        """Retrieve gene locations as GenomicRanges.
+
+        Requires 'chromosome_locations' table in the DB.
+        """
+        try:
+            self._query_as_biocframe("SELECT 1 FROM chromosome_locations LIMIT 1")
+        except sqlite3.OperationalError:
+            return GenomicRanges.empty()
+
+        query = """
+        SELECT 
+            g.gene_id,
+            c.seqname,
+            c.start_location,
+            c.end_location
+        FROM genes g
+        JOIN chromosome_locations c ON g._id = c._id
+        """
+
+        bf = self._query_as_biocframe(query)
+
+        if bf.shape[0] == 0:
+            return GenomicRanges.empty()
+
+        names = [str(x) for x in bf.get_column("gene_id")]
+        seqnames = [str(x) for x in bf.get_column("seqname")]
+        starts = bf.get_column("start_location")
+        ends = bf.get_column("end_location")
+
+        widths = [abs(e - s) + 1 for s, e in zip(starts, ends)]
+        strand = ["*"] * len(names)
+
+        ranges = IRanges(start=starts, width=widths)
+        mcols = BiocFrame({"gene_id": names}, row_names=names)
+
+        return GenomicRanges(seqnames=seqnames, ranges=ranges, strand=strand, names=names, mcols=mcols)
+
     def close(self):
         """Close the database connection."""
         self.conn.close()
