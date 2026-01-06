@@ -5,6 +5,10 @@ from biocframe import BiocFrame
 from genomicranges import GenomicRanges
 from iranges import IRanges
 
+__author__ = "Jayaram Kancherla"
+__copyright__ = "Jayaram Kancherla"
+__license__ = "MIT"
+
 
 class OrgDb:
     """Interface for accessing OrgDb SQLite databases in Python."""
@@ -374,3 +378,21 @@ class OrgDb:
             }
 
         return mapping
+
+    def columns(self) -> List[str]:
+        """List all available columns/keytypes."""
+        return list(self._table_map.keys())
+
+    def keytypes(self) -> List[str]:
+        """List all available keytypes (same as columns)."""
+        return self.columns()
+
+    def close(self):
+        """Close the database connection."""
+        self.conn.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
