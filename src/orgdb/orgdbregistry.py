@@ -1,10 +1,11 @@
 import os
+import sqlite3
 from pathlib import Path
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pybiocfilecache import BiocFileCache
 
-from ._ahub import ORGDB_CONFIG
+from ._ahub import AHUB_METADATA_URL
 from .orgdb import OrgDb
 from .record import OrgDbRecord
 
@@ -12,44 +13,108 @@ __author__ = "Jayaram Kancherla"
 __copyright__ = "Jayaram Kancherla"
 __license__ = "MIT"
 
-# copied over from the txdb package
-
 
 class OrgDbRegistry:
-    """Registry for OrgDb resources backed by ORGDB_CONFIG and a BiocFileCache."""
+    """Registry for OrgDb resources, dynamically populated from AnnotationHub."""
 
     def __init__(
         self,
-        config: Dict[str, Dict[str, Any]] = ORGDB_CONFIG,
         cache_dir: Optional[Union[str, Path]] = None,
+        force: bool = False,
     ) -> None:
         """Initialize the OrgDb registry.
 
         Args:
-            config:
-                ORGDB_CONFIG-style mapping:
-                    orgdb_id -> {"release_date": "YYYY-MM-DD", "url": "..."}
-
             cache_dir:
                 Directory for the BiocFileCache database and cached files.
                 If None, defaults to "~/.cache/orgdb_bfc".
+
+            force:
+                If True, force re-download of the AnnotationHub metadata database.
         """
         if cache_dir is None:
             cache_dir = Path.home() / ".cache" / "orgdb_bfc"
 
-        cache_dir = Path(cache_dir)
-        cache_dir.mkdir(parents=True, exist_ok=True)
+        self._cache_dir = Path(cache_dir)
+        self._cache_dir.mkdir(parents=True, exist_ok=True)
+        self._bfc = BiocFileCache(self._cache_dir)
 
-        self._bfc = BiocFileCache(cache_dir)
-        self._config = config
+        self._registry_map: Dict[str, OrgDbRecord] = {}
 
-    def list_orgdb(self) -> list[str]:
-        """List all available OrgDb IDs.
+        self._initialize_registry(force=force)
+
+    def _initialize_registry(self, force: bool = False):
+        """Fetch the AnnotationHub metadata and populate the registry."""
+        rname = "annotationhub_metadata"
+
+        existing = None
+        try:
+            existing = self._bfc.get(rname)
+        except Exception:
+            pass
+
+        if force and existing:
+            try:
+                self._bfc.remove(rname)
+            except Exception:
+                pass
+            existing = None
+
+        if existing:
+            md_resource = existing
+        else:
+            md_resource = self._bfc.add(rname, AHUB_METADATA_URL, rtype="web")
+
+        md_path = self._get_filepath(md_resource)
+
+        if not md_path or not os.path.exists(md_path):
+            if existing and not force:
+                return self._initialize_registry(force=True)
+
+            raise RuntimeError("Failed to retrieve AnnotationHub metadata database.")
+
+        conn = sqlite3.connect(md_path)
+        try:
+            query = """
+            SELECT
+                r.title,
+                r.rdatadateadded,
+                lp.location_prefix || rp.rdatapath AS full_rdatapath
+            FROM resources r
+            LEFT JOIN location_prefixes lp
+                ON r.location_prefix_id = lp.id
+            LEFT JOIN rdatapaths rp
+                ON rp.resource_id = r.id
+            WHERE r.title LIKE 'org.%.sqlite'
+            ORDER BY r.rdatadateadded DESC;
+            """
+            cursor = conn.cursor()
+            cursor.execute(query)
+            rows = cursor.fetchall()
+        finally:
+            conn.close()
+
+        for title, date_added, url in rows:
+            if title.endswith(".sqlite"):
+                orgdb_id = title[:-7]
+            else:
+                orgdb_id = title
+
+            if orgdb_id in self._registry_map:
+                continue
+
+            entry = {"url": url, "release_date": str(date_added).split(" ")[0] if date_added else None}
+
+            record = OrgDbRecord.from_config_entry(orgdb_id, entry)
+            self._registry_map[orgdb_id] = record
+
+    def list_orgdb(self) -> List[str]:
+        """List all available OrgDb IDs (e.g., 'org.Hs.eg.db').
 
         Returns:
-            A list of valid OrgDb ID strings.
+            A sorted list of valid OrgDb ID strings.
         """
-        return list(self._config.keys())
+        return sorted(list(self._registry_map.keys()))
 
     def get_record(self, orgdb_id: str) -> OrgDbRecord:
         """Get the metadata record for a given OrgDb ID.
@@ -62,16 +127,12 @@ class OrgDbRegistry:
             A OrgDbRecord object containing metadata.
 
         Raises:
-            KeyError: If the ID is not found in the configuration.
+            KeyError: If the ID is not found.
         """
-        if orgdb_id not in self._config:
+        if orgdb_id not in self._registry_map:
             raise KeyError(f"OrgDb ID '{orgdb_id}' not found in registry.")
 
-        entry = self._config[orgdb_id]
-        return OrgDbRecord.from_config_entry(orgdb_id, entry)
-
-    def _get_absolute_path(self, x: str):
-        return f"{self._bfc.config.cache_dir}/{x}"
+        return self._registry_map[orgdb_id]
 
     def download(self, orgdb_id: str, force: bool = False) -> str:
         """Download and cache the OrgDb file.
@@ -82,7 +143,6 @@ class OrgDbRegistry:
 
             force:
                 If True, forces re-download even if already cached.
-                Defaults to False.
 
         Returns:
             Local filesystem path to the cached file.
@@ -97,6 +157,18 @@ class OrgDbRegistry:
             except Exception:
                 pass
 
+        # Check if already exists
+        if not force:
+            try:
+                existing = self._bfc.get(key)
+                if existing:
+                    path = self._get_filepath(existing)
+                    if path and os.path.exists(path) and os.path.getsize(path) > 0:
+                        return path
+            except Exception:
+                pass
+
+        # Add/Download
         resource = self._bfc.add(
             key,
             url,
@@ -104,29 +176,21 @@ class OrgDbRegistry:
             download=True,
         )
 
-        path = self._resource_path(resource)
-        if path is None:
-            raise RuntimeError(f"Could not resolve local path for resource {key!r}")
+        path = self._get_filepath(resource)
 
-        abs_path = self._get_absolute_path(path)
-
-        if not os.path.exists(abs_path) or os.path.getsize(abs_path) == 0:
+        # Validation
+        if not path or not os.path.exists(path) or os.path.getsize(path) == 0:
+            # Cleanup bad download
             try:
                 self._bfc.remove(key)
             except Exception:
                 pass
-            raise RuntimeError(
-                f"Download failed for {orgdb_id}: File at {abs_path} is empty or missing. "
-                "Please check your internet connection or the resource URL."
-            )
+            raise RuntimeError(f"Download failed for {orgdb_id}. File is empty or missing.")
 
-        return str(abs_path)
+        return path
 
     def load_db(self, orgdb_id: str, force: bool = False) -> OrgDb:
         """Load an OrgDb object for the given ID.
-
-        If the resource is already downloaded and valid, it returns the local copy
-        immediately (unless force=True).
 
         Args:
             orgdb_id:
@@ -136,44 +200,18 @@ class OrgDbRegistry:
                 If True, forces re-download of the database file.
 
         Returns:
-            An initialized OrgDb object connected to the cached database.
+            An initialized OrgDb object.
         """
-        if not force and self.exists_locally(orgdb_id):
-            path = self.local_path(orgdb_id)
-            if path:
-                return OrgDb(path)
-
         path = self.download(orgdb_id, force=force)
         return OrgDb(path)
 
-    def exists_locally(self, orgdb_id: str) -> bool:
-        """Check if the file for a given OrgDb ID is already present in the cache."""
-        try:
-            resource = self._bfc.get(orgdb_id)
-        except Exception:
-            return False
-
-        path = self._resource_path(resource)
-        abs_path = self._get_absolute_path(path)
-        return bool(abs_path and os.path.exists(abs_path) and os.path.getsize(abs_path) > 0)
-
-    def local_path(self, orgdb_id: str) -> Optional[str]:
-        """Return local path if cached, else None."""
-        try:
-            resource = self._bfc.get(orgdb_id)
-        except Exception:
-            return None
-
-        path = self._resource_path(resource)
-        abs_path = self._get_absolute_path(path)
-        if not abs_path or not os.path.exists(abs_path) or os.path.getsize(abs_path) == 0:
-            return None
-
-        return str(abs_path)
-
-    def _resource_path(self, resource: Any) -> Optional[str]:
-        """Helper to extract path from a BiocFileCache resource object."""
+    def _get_filepath(self, resource: Any) -> Optional[str]:
+        """Helper to extract absolute path from a BiocFileCache resource."""
         if hasattr(resource, "rpath"):
-            return str(resource.rpath)
+            rel_path = str(resource.rpath)
+        elif hasattr(resource, "get"):
+            rel_path = str(resource.get("rpath"))
+        else:
+            return None
 
-        return str(resource.get("rpath")) if hasattr(resource, "get") else None
+        return str(self._cache_dir / rel_path)
