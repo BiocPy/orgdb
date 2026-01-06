@@ -1,7 +1,6 @@
 # Changelog
 
-## Version 0.1 (development)
+## Version 0.0.1 
 
-- Feature A added
-- FIX: nasty bug #1729 fixed
-- add your changes here!
+- Initial implementation to access OrgDB objects. 
+- This also fetches the annotation hub sqlite file and queries for available org sqlite files instead of a static registry used in the txdb package.
