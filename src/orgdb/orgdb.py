@@ -404,6 +404,134 @@ class OrgDb:
         except sqlite3.OperationalError:
             return []
 
+    def _expand_cols(self, cols: List[str]) -> List[str]:
+        """Expand columns like GO into GO, EVIDENCE, ONTOLOGY."""
+        new_cols = []
+        for c in cols:
+            new_cols.append(c)
+            if c == "GO":
+                if "EVIDENCE" not in new_cols:
+                    new_cols.append("EVIDENCE")
+                if "ONTOLOGY" not in new_cols:
+                    new_cols.append("ONTOLOGY")
+            if c == "CHRLOC":
+                if "CHRLOCCHR" not in new_cols:
+                    new_cols.append("CHRLOCCHR")
+        return list(set(new_cols))  # remove duplicates
+
+    def select(self, keys: Union[List[str], str], columns: Union[List[str], str], keytype: str) -> BiocFrame:
+        """Retrieve data from the database.
+
+        Args:
+            keys:
+                A list of keys to select.
+
+            columns:
+                List of columns to retrieve.
+
+            keytype:
+                The type of the provided keys (must be one of columns()).
+        """
+        if isinstance(keys, str):
+            keys = [keys]
+
+        if isinstance(columns, str):
+            columns = [columns]
+
+        if keytype not in self._table_map:
+            raise ValueError(f"Invalid keytype: {keytype}")
+
+        req_cols = columns + [keytype]
+        req_cols = self._expand_cols(req_cols)
+
+        tables_needed = set()
+        fields_to_select = []
+
+        for col in req_cols:
+            if col not in self._table_map:
+                continue
+            t, f = self._table_map[col]
+            tables_needed.add(t)
+            fields_to_select.append(f"{t}.{f} AS {col}")
+
+        base_table = "genes"
+        kt_table, kt_field = self._table_map[keytype]
+        select_clause = ", ".join(fields_to_select)
+        joins = []
+        sorted_tables = sorted(list(tables_needed))
+
+        if kt_table not in tables_needed:
+            pass
+
+        from_clause = f"FROM {base_table}"
+
+        for t in sorted_tables:
+            if t == base_table:
+                continue
+            joins.append(f"LEFT JOIN {t} USING (_id)")
+
+        if kt_table != base_table and kt_table not in sorted_tables:
+            joins.append(f"LEFT JOIN {kt_table} USING (_id)")
+
+        join_clause = " ".join(joins)
+
+        placeholders = ",".join("?" * len(keys))
+        where_clause = f"WHERE {kt_table}.{kt_field} IN ({placeholders})"
+
+        sql = f"SELECT {select_clause} {from_clause} {join_clause} {where_clause}"
+
+        return self._query_as_biocframe(sql, tuple(keys))
+
+    def mapIds(
+        self, keys: Union[List[str], str], column: str, keytype: str, multiVals: str = "first"
+    ) -> Union[dict, list]:
+        """Map keys to a specific column. A wrapper around select.
+
+        Args:
+            keys:
+                Keys to map.
+
+            column:
+                The column to map to.
+
+            keytype:
+                The ID type of the keys.
+
+            multiVals:
+                How to handle multiple values ('first', 'list', 'filter').
+        """
+        bf = self.select(keys, [column], keytype)
+
+        kt_data = bf.get_column(keytype)
+        col_data = bf.get_column(column)
+
+        res = {}
+        for k, v in zip(kt_data, col_data):
+            k = str(k)
+            if k not in res:
+                res[k] = []
+            if v is not None:
+                res[k].append(v)
+
+        final_res = {}
+        for k in keys:
+            k = str(k)
+            vals = res.get(k, [])
+
+            if multiVals == "first":
+                final_res[k] = vals[0] if vals else None
+            elif multiVals == "list":
+                final_res[k] = vals
+            elif multiVals == "filter":
+                if len(vals) == 1:
+                    final_res[k] = vals[0]
+            else:
+                final_res[k] = vals[0] if vals else None
+
+        if multiVals == "list":
+            return final_res
+        return final_res
+
     def genes(self) -> GenomicRanges:
         """Retrieve gene locations as GenomicRanges.
 
