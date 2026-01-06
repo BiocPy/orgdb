@@ -1,0 +1,1102 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="prev" title="orgdb" href="modules.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>orgdb package - orgdb 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">orgdb 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">orgdb 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributions &amp; Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Module Reference</a><input aria-label="Toggle navigation of Module Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">orgdb package</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/orgdb.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="orgdb-package">
+<h1>orgdb package<a class="headerlink" href="#orgdb-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-orgdb.orgdb">
+<span id="orgdb-orgdb-module"></span><h2>orgdb.orgdb module<a class="headerlink" href="#module-orgdb.orgdb" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orgdb.orgdb.</span></span><span class="sig-name descname"><span class="pre">OrgDb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbpath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Interface for accessing OrgDb SQLite databases in Python.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.__enter__">
+<span class="sig-name descname"><span class="pre">__enter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.__enter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.__enter__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.__exit__">
+<span class="sig-name descname"><span class="pre">__exit__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_tb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.__exit__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.__exit__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbpath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the OrgDb object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dbpath</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the SQLite database file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.close" title="Link to this definition">¶</a></dt>
+<dd><p>Close the database connection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.columns">
+<span class="sig-name descname"><span class="pre">columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.columns" title="Link to this definition">¶</a></dt>
+<dd><p>List all available columns/keytypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.genes">
+<span class="sig-name descname"><span class="pre">genes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.genes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.genes" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve gene locations as GenomicRanges.</p>
+<p>Requires ‘chromosome_locations’ table in the DB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicRanges</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keytype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.keys" title="Link to this definition">¶</a></dt>
+<dd><p>Return keys for the given keytype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.keytypes">
+<span class="sig-name descname"><span class="pre">keytypes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.keytypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.keytypes" title="Link to this definition">¶</a></dt>
+<dd><p>List all available keytypes (same as columns).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.mapIds">
+<span class="sig-name descname"><span class="pre">mapIds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keytype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiVals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'first'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.mapIds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.mapIds" title="Link to this definition">¶</a></dt>
+<dd><p>Map keys to a specific column. A wrapper around select.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Keys to map.</p></li>
+<li><p><strong>column</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The column to map to.</p></li>
+<li><p><strong>keytype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The ID type of the keys.</p></li>
+<li><p><strong>multiVals</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – How to handle multiple values (‘first’, ‘list’, ‘filter’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#list" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.metadata">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BiocFrame</span></em><a class="headerlink" href="#orgdb.orgdb.OrgDb.metadata" title="Link to this definition">¶</a></dt>
+<dd><p>Get the metadata table from the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.select">
+<span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keytype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdb.OrgDb.select" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve data from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – A list of keys to select.</p></li>
+<li><p><strong>columns</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – List of columns to retrieve.</p></li>
+<li><p><strong>keytype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The type of the provided keys (must be one of columns()).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiocFrame</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="orgdb.orgdb.OrgDb.species">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">species</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#orgdb.orgdb.OrgDb.species" title="Link to this definition">¶</a></dt>
+<dd><p>Get the organism/species name from metadata.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-orgdb.orgdbregistry">
+<span id="orgdb-orgdbregistry-module"></span><h2>orgdb.orgdbregistry module<a class="headerlink" href="#module-orgdb.orgdbregistry" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orgdb.orgdbregistry.OrgDbRegistry">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orgdb.orgdbregistry.</span></span><span class="sig-name descname"><span class="pre">OrgDbRegistry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdbregistry.OrgDbRegistry" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Registry for OrgDb resources, dynamically populated from AnnotationHub.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdbregistry.OrgDbRegistry.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdbregistry.OrgDbRegistry.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the OrgDb registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cache_dir</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3.12/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, <a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</span>) – Directory for the BiocFileCache database and cached files.
+If None, defaults to “~/.cache/orgdb_bfc”.</p></li>
+<li><p><strong>force</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, force re-download of the AnnotationHub metadata database.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdbregistry.OrgDbRegistry.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.download"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdbregistry.OrgDbRegistry.download" title="Link to this definition">¶</a></dt>
+<dd><p>Download and cache the OrgDb file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>orgdb_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The OrgDb ID to fetch.</p></li>
+<li><p><strong>force</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, forces re-download even if already cached.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Local filesystem path to the cached file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdbregistry.OrgDbRegistry.get_record">
+<span class="sig-name descname"><span class="pre">get_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.get_record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdbregistry.OrgDbRegistry.get_record" title="Link to this definition">¶</a></dt>
+<dd><p>Get the metadata record for a given OrgDb ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>orgdb_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The OrgDb ID to look up (e.g., ‘org.Hs.eg.db’).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#orgdb.record.OrgDbRecord" title="orgdb.record.OrgDbRecord"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrgDbRecord</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A OrgDbRecord object containing metadata.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.12/library/exceptions.html#KeyError" title="(in Python v3.12)"><strong>KeyError</strong></a> – If the ID is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdbregistry.OrgDbRegistry.list_orgdb">
+<span class="sig-name descname"><span class="pre">list_orgdb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.list_orgdb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdbregistry.OrgDbRegistry.list_orgdb" title="Link to this definition">¶</a></dt>
+<dd><p>List all available OrgDb IDs (e.g., ‘org.Hs.eg.db’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A sorted list of valid OrgDb ID strings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.orgdbregistry.OrgDbRegistry.load_db">
+<span class="sig-name descname"><span class="pre">load_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.load_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.orgdbregistry.OrgDbRegistry.load_db" title="Link to this definition">¶</a></dt>
+<dd><p>Load an OrgDb object for the given ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>orgdb_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The ID of the OrgDb to load.</p></li>
+<li><p><strong>force</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, forces re-download of the database file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#orgdb.orgdb.OrgDb" title="orgdb.orgdb.OrgDb"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrgDb</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An initialized OrgDb object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-orgdb.record">
+<span id="orgdb-record-module"></span><h2>orgdb.record module<a class="headerlink" href="#module-orgdb.record" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orgdb.record.</span></span><span class="sig-name descname"><span class="pre">OrgDbRecord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bioc_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/record.html#OrgDbRecord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.record.OrgDbRecord" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Container for a single OrgDb entry.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'bioc_version':</span> <span class="pre">'Optional[str]',</span> <span class="pre">'id_type':</span> <span class="pre">'Optional[str]',</span> <span class="pre">'orgdb_id':</span> <span class="pre">'str',</span> <span class="pre">'release_date':</span> <span class="pre">'Optional[date]',</span> <span class="pre">'species':</span> <span class="pre">'Optional[str]',</span> <span class="pre">'url':</span> <span class="pre">'str'}</span></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__dataclass_fields__">
+<span class="sig-name descname"><span class="pre">__dataclass_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'bioc_version':</span> <span class="pre">Field(name='bioc_version',type='Optional[str]',default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'id_type':</span> <span class="pre">Field(name='id_type',type='Optional[str]',default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'orgdb_id':</span> <span class="pre">Field(name='orgdb_id',type='str',default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'release_date':</span> <span class="pre">Field(name='release_date',type='Optional[date]',default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'species':</span> <span class="pre">Field(name='species',type='Optional[str]',default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'url':</span> <span class="pre">Field(name='url',type='str',default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD)}</span></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.__dataclass_fields__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__dataclass_params__">
+<span class="sig-name descname"><span class="pre">__dataclass_params__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">_DataclassParams(init=True,repr=True,eq=True,order=False,unsafe_hash=False,frozen=True,match_args=True,kw_only=False,slots=False,weakref_slot=False)</span></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.__dataclass_params__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__delattr__">
+<span class="sig-name descname"><span class="pre">__delattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.record.OrgDbRecord.__delattr__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement delattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.record.OrgDbRecord.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.record.OrgDbRecord.__hash__" title="Link to this definition">¶</a></dt>
+<dd><p>Return hash(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bioc_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.record.OrgDbRecord.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__match_args__">
+<span class="sig-name descname"><span class="pre">__match_args__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('orgdb_id',</span> <span class="pre">'release_date',</span> <span class="pre">'url',</span> <span class="pre">'species',</span> <span class="pre">'id_type',</span> <span class="pre">'bioc_version')</span></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.__match_args__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.record.OrgDbRecord.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.__setattr__">
+<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.record.OrgDbRecord.__setattr__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement setattr(self, name, value).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.bioc_version">
+<span class="sig-name descname"><span class="pre">bioc_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.bioc_version" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.from_config_entry">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/record.html#OrgDbRecord.from_config_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.record.OrgDbRecord.from_config_entry" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#orgdb.record.OrgDbRecord" title="orgdb.record.OrgDbRecord"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrgDbRecord</span></code></a></span></p>
+</dd>
+</dl>
+<p>Build a record from a ORGDB_CONFIG entry:
+{</p>
+<blockquote>
+<div><p>“release_date”: “YYYY-MM-DD”,  # optional
+“url”: “<a class="reference external" href="https://">https://</a>…”</p>
+</div></blockquote>
+<p>}</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.id_type">
+<span class="sig-name descname"><span class="pre">id_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.id_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.orgdb_id">
+<span class="sig-name descname"><span class="pre">orgdb_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.orgdb_id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.release_date">
+<span class="sig-name descname"><span class="pre">release_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.12/library/datetime.html#datetime.date" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.release_date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.species">
+<span class="sig-name descname"><span class="pre">species</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.species" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.record.OrgDbRecord.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#orgdb.record.OrgDbRecord.url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-orgdb">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-orgdb" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orgdb.OrgDb">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orgdb.</span></span><span class="sig-name descname"><span class="pre">OrgDb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbpath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Interface for accessing OrgDb SQLite databases in Python.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDb.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#orgdb.OrgDb.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.__enter__">
+<span class="sig-name descname"><span class="pre">__enter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.__enter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.__enter__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.__exit__">
+<span class="sig-name descname"><span class="pre">__exit__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_tb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.__exit__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.__exit__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbpath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the OrgDb object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dbpath</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the SQLite database file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.close" title="Link to this definition">¶</a></dt>
+<dd><p>Close the database connection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.columns">
+<span class="sig-name descname"><span class="pre">columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.columns" title="Link to this definition">¶</a></dt>
+<dd><p>List all available columns/keytypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.genes">
+<span class="sig-name descname"><span class="pre">genes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.genes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.genes" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve gene locations as GenomicRanges.</p>
+<p>Requires ‘chromosome_locations’ table in the DB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicRanges</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keytype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.keys" title="Link to this definition">¶</a></dt>
+<dd><p>Return keys for the given keytype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.keytypes">
+<span class="sig-name descname"><span class="pre">keytypes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.keytypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.keytypes" title="Link to this definition">¶</a></dt>
+<dd><p>List all available keytypes (same as columns).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.mapIds">
+<span class="sig-name descname"><span class="pre">mapIds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keytype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiVals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'first'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.mapIds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.mapIds" title="Link to this definition">¶</a></dt>
+<dd><p>Map keys to a specific column. A wrapper around select.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Keys to map.</p></li>
+<li><p><strong>column</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The column to map to.</p></li>
+<li><p><strong>keytype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The ID type of the keys.</p></li>
+<li><p><strong>multiVals</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – How to handle multiple values (‘first’, ‘list’, ‘filter’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#list" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="orgdb.OrgDb.metadata">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BiocFrame</span></em><a class="headerlink" href="#orgdb.OrgDb.metadata" title="Link to this definition">¶</a></dt>
+<dd><p>Get the metadata table from the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDb.select">
+<span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keytype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdb.html#OrgDb.select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDb.select" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve data from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – A list of keys to select.</p></li>
+<li><p><strong>columns</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – List of columns to retrieve.</p></li>
+<li><p><strong>keytype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The type of the provided keys (must be one of columns()).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiocFrame</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="orgdb.OrgDb.species">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">species</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#orgdb.OrgDb.species" title="Link to this definition">¶</a></dt>
+<dd><p>Get the organism/species name from metadata.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orgdb.</span></span><span class="sig-name descname"><span class="pre">OrgDbRecord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bioc_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/record.html#OrgDbRecord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDbRecord" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Container for a single OrgDb entry.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'bioc_version':</span> <span class="pre">'Optional[str]',</span> <span class="pre">'id_type':</span> <span class="pre">'Optional[str]',</span> <span class="pre">'orgdb_id':</span> <span class="pre">'str',</span> <span class="pre">'release_date':</span> <span class="pre">'Optional[date]',</span> <span class="pre">'species':</span> <span class="pre">'Optional[str]',</span> <span class="pre">'url':</span> <span class="pre">'str'}</span></em><a class="headerlink" href="#orgdb.OrgDbRecord.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__dataclass_fields__">
+<span class="sig-name descname"><span class="pre">__dataclass_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'bioc_version':</span> <span class="pre">Field(name='bioc_version',type='Optional[str]',default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'id_type':</span> <span class="pre">Field(name='id_type',type='Optional[str]',default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'orgdb_id':</span> <span class="pre">Field(name='orgdb_id',type='str',default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'release_date':</span> <span class="pre">Field(name='release_date',type='Optional[date]',default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'species':</span> <span class="pre">Field(name='species',type='Optional[str]',default=None,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD),</span> <span class="pre">'url':</span> <span class="pre">Field(name='url',type='str',default=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,default_factory=&lt;dataclasses._MISSING_TYPE</span> <span class="pre">object&gt;,init=True,repr=True,hash=None,compare=True,metadata=mappingproxy({}),kw_only=False,_field_type=_FIELD)}</span></em><a class="headerlink" href="#orgdb.OrgDbRecord.__dataclass_fields__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__dataclass_params__">
+<span class="sig-name descname"><span class="pre">__dataclass_params__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">_DataclassParams(init=True,repr=True,eq=True,order=False,unsafe_hash=False,frozen=True,match_args=True,kw_only=False,slots=False,weakref_slot=False)</span></em><a class="headerlink" href="#orgdb.OrgDbRecord.__dataclass_params__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__delattr__">
+<span class="sig-name descname"><span class="pre">__delattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.OrgDbRecord.__delattr__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement delattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.OrgDbRecord.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.OrgDbRecord.__hash__" title="Link to this definition">¶</a></dt>
+<dd><p>Return hash(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bioc_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.OrgDbRecord.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__match_args__">
+<span class="sig-name descname"><span class="pre">__match_args__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('orgdb_id',</span> <span class="pre">'release_date',</span> <span class="pre">'url',</span> <span class="pre">'species',</span> <span class="pre">'id_type',</span> <span class="pre">'bioc_version')</span></em><a class="headerlink" href="#orgdb.OrgDbRecord.__match_args__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.OrgDbRecord.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.__setattr__">
+<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orgdb.OrgDbRecord.__setattr__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement setattr(self, name, value).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.bioc_version">
+<span class="sig-name descname"><span class="pre">bioc_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#orgdb.OrgDbRecord.bioc_version" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.from_config_entry">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/record.html#OrgDbRecord.from_config_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDbRecord.from_config_entry" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#orgdb.record.OrgDbRecord" title="orgdb.record.OrgDbRecord"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrgDbRecord</span></code></a></span></p>
+</dd>
+</dl>
+<p>Build a record from a ORGDB_CONFIG entry:
+{</p>
+<blockquote>
+<div><p>“release_date”: “YYYY-MM-DD”,  # optional
+“url”: “<a class="reference external" href="https://">https://</a>…”</p>
+</div></blockquote>
+<p>}</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.id_type">
+<span class="sig-name descname"><span class="pre">id_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#orgdb.OrgDbRecord.id_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.orgdb_id">
+<span class="sig-name descname"><span class="pre">orgdb_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#orgdb.OrgDbRecord.orgdb_id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.release_date">
+<span class="sig-name descname"><span class="pre">release_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.12/library/datetime.html#datetime.date" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#orgdb.OrgDbRecord.release_date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.species">
+<span class="sig-name descname"><span class="pre">species</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#orgdb.OrgDbRecord.species" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRecord.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><a class="headerlink" href="#orgdb.OrgDbRecord.url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="orgdb.OrgDbRegistry">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orgdb.</span></span><span class="sig-name descname"><span class="pre">OrgDbRegistry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDbRegistry" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.12/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Registry for OrgDb resources, dynamically populated from AnnotationHub.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="orgdb.OrgDbRegistry.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#orgdb.OrgDbRegistry.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRegistry.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDbRegistry.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the OrgDb registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cache_dir</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3.12/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, <a class="reference external" href="https://docs.python.org/3.12/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</span>) – Directory for the BiocFileCache database and cached files.
+If None, defaults to “~/.cache/orgdb_bfc”.</p></li>
+<li><p><strong>force</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, force re-download of the AnnotationHub metadata database.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRegistry.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.download"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDbRegistry.download" title="Link to this definition">¶</a></dt>
+<dd><p>Download and cache the OrgDb file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>orgdb_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The OrgDb ID to fetch.</p></li>
+<li><p><strong>force</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, forces re-download even if already cached.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Local filesystem path to the cached file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRegistry.get_record">
+<span class="sig-name descname"><span class="pre">get_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.get_record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDbRegistry.get_record" title="Link to this definition">¶</a></dt>
+<dd><p>Get the metadata record for a given OrgDb ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>orgdb_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The OrgDb ID to look up (e.g., ‘org.Hs.eg.db’).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#orgdb.record.OrgDbRecord" title="orgdb.record.OrgDbRecord"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrgDbRecord</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A OrgDbRecord object containing metadata.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.12/library/exceptions.html#KeyError" title="(in Python v3.12)"><strong>KeyError</strong></a> – If the ID is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRegistry.list_orgdb">
+<span class="sig-name descname"><span class="pre">list_orgdb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.list_orgdb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDbRegistry.list_orgdb" title="Link to this definition">¶</a></dt>
+<dd><p>List all available OrgDb IDs (e.g., ‘org.Hs.eg.db’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/typing.html#typing.List" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A sorted list of valid OrgDb ID strings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="orgdb.OrgDbRegistry.load_db">
+<span class="sig-name descname"><span class="pre">load_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgdb_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/orgdb/orgdbregistry.html#OrgDbRegistry.load_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#orgdb.OrgDbRegistry.load_db" title="Link to this definition">¶</a></dt>
+<dd><p>Load an OrgDb object for the given ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>orgdb_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The ID of the OrgDb to load.</p></li>
+<li><p><strong>force</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3.12/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, forces re-download of the database file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#orgdb.orgdb.OrgDb" title="orgdb.orgdb.OrgDb"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrgDb</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An initialized OrgDb object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="modules.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">orgdb</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Jayaram Kancherla
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">orgdb package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-orgdb.orgdb">orgdb.orgdb module</a><ul>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb"><code class="docutils literal notranslate"><span class="pre">OrgDb</span></code></a><ul>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.__enter__"><code class="docutils literal notranslate"><span class="pre">OrgDb.__enter__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.__exit__"><code class="docutils literal notranslate"><span class="pre">OrgDb.__exit__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.__init__"><code class="docutils literal notranslate"><span class="pre">OrgDb.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.close"><code class="docutils literal notranslate"><span class="pre">OrgDb.close()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.columns"><code class="docutils literal notranslate"><span class="pre">OrgDb.columns()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.genes"><code class="docutils literal notranslate"><span class="pre">OrgDb.genes()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.keys"><code class="docutils literal notranslate"><span class="pre">OrgDb.keys()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.keytypes"><code class="docutils literal notranslate"><span class="pre">OrgDb.keytypes()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.mapIds"><code class="docutils literal notranslate"><span class="pre">OrgDb.mapIds()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.metadata"><code class="docutils literal notranslate"><span class="pre">OrgDb.metadata</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.select"><code class="docutils literal notranslate"><span class="pre">OrgDb.select()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdb.OrgDb.species"><code class="docutils literal notranslate"><span class="pre">OrgDb.species</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-orgdb.orgdbregistry">orgdb.orgdbregistry module</a><ul>
+<li><a class="reference internal" href="#orgdb.orgdbregistry.OrgDbRegistry"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry</span></code></a><ul>
+<li><a class="reference internal" href="#orgdb.orgdbregistry.OrgDbRegistry.__init__"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdbregistry.OrgDbRegistry.download"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.download()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdbregistry.OrgDbRegistry.get_record"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.get_record()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdbregistry.OrgDbRegistry.list_orgdb"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.list_orgdb()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.orgdbregistry.OrgDbRegistry.load_db"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.load_db()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-orgdb.record">orgdb.record module</a><ul>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord</span></code></a><ul>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__annotations__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__dataclass_fields__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__dataclass_fields__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__dataclass_params__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__dataclass_params__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__delattr__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__delattr__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__eq__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__hash__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__hash__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__init__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__match_args__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__match_args__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__repr__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.__setattr__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__setattr__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.bioc_version"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.bioc_version</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.from_config_entry"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.from_config_entry()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.id_type"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.id_type</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.orgdb_id"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.orgdb_id</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.release_date"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.release_date</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.species"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.species</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.record.OrgDbRecord.url"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.url</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-orgdb">Module contents</a><ul>
+<li><a class="reference internal" href="#orgdb.OrgDb"><code class="docutils literal notranslate"><span class="pre">OrgDb</span></code></a><ul>
+<li><a class="reference internal" href="#orgdb.OrgDb.__annotations__"><code class="docutils literal notranslate"><span class="pre">OrgDb.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.__enter__"><code class="docutils literal notranslate"><span class="pre">OrgDb.__enter__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.__exit__"><code class="docutils literal notranslate"><span class="pre">OrgDb.__exit__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.__init__"><code class="docutils literal notranslate"><span class="pre">OrgDb.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.close"><code class="docutils literal notranslate"><span class="pre">OrgDb.close()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.columns"><code class="docutils literal notranslate"><span class="pre">OrgDb.columns()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.genes"><code class="docutils literal notranslate"><span class="pre">OrgDb.genes()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.keys"><code class="docutils literal notranslate"><span class="pre">OrgDb.keys()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.keytypes"><code class="docutils literal notranslate"><span class="pre">OrgDb.keytypes()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.mapIds"><code class="docutils literal notranslate"><span class="pre">OrgDb.mapIds()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.metadata"><code class="docutils literal notranslate"><span class="pre">OrgDb.metadata</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.select"><code class="docutils literal notranslate"><span class="pre">OrgDb.select()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDb.species"><code class="docutils literal notranslate"><span class="pre">OrgDb.species</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord</span></code></a><ul>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__annotations__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__dataclass_fields__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__dataclass_fields__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__dataclass_params__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__dataclass_params__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__delattr__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__delattr__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__eq__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__hash__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__hash__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__init__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__match_args__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__match_args__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__repr__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.__setattr__"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.__setattr__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.bioc_version"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.bioc_version</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.from_config_entry"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.from_config_entry()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.id_type"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.id_type</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.orgdb_id"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.orgdb_id</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.release_date"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.release_date</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.species"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.species</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRecord.url"><code class="docutils literal notranslate"><span class="pre">OrgDbRecord.url</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#orgdb.OrgDbRegistry"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry</span></code></a><ul>
+<li><a class="reference internal" href="#orgdb.OrgDbRegistry.__annotations__"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRegistry.__init__"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRegistry.download"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.download()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRegistry.get_record"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.get_record()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRegistry.list_orgdb"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.list_orgdb()</span></code></a></li>
+<li><a class="reference internal" href="#orgdb.OrgDbRegistry.load_db"><code class="docutils literal notranslate"><span class="pre">OrgDbRegistry.load_db()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

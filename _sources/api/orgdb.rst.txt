@@ -1,0 +1,37 @@
+orgdb package
+=============
+
+Submodules
+----------
+
+orgdb.orgdb module
+------------------
+
+.. automodule:: orgdb.orgdb
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+orgdb.orgdbregistry module
+--------------------------
+
+.. automodule:: orgdb.orgdbregistry
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+orgdb.record module
+-------------------
+
+.. automodule:: orgdb.record
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: orgdb
+   :members:
+   :show-inheritance:
+   :undoc-members:
