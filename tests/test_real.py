@@ -21,6 +21,6 @@ def test_real_orgdb_workflow(tmp_path):
              "GO:0048699",
              "GO:0048143"],
         columns="SYMBOL")
-    
+
     assert res.shape == (104, 4)
     orgdb.close()
