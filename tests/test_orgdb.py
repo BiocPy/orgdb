@@ -41,19 +41,19 @@ def test_select_simple(mock_orgdb):
 def test_select_multikey(mock_orgdb):
     res = mock_orgdb.select(keys=["1", "10"], columns=["SYMBOL"], keytype="ENTREZID")
     assert len(res) == 2
-    
+
     symbols = res.get_column("SYMBOL")
     assert "A1BG" in symbols
     assert "NAT2" in symbols
 
 def test_select_go_expansion(mock_orgdb):
     res = mock_orgdb.select(keys="1", columns=["GO"], keytype="ENTREZID")
-    
+
     col_names = list(res.column_names)
     assert "GO" in col_names
     assert "EVIDENCE" in col_names
     assert "ONTOLOGY" in col_names
-    
+
     assert len(res) == 2
     go_ids = res.get_column("GO")
     assert "GO:0000001" in go_ids
@@ -66,12 +66,12 @@ def test_select_many_to_one(mock_orgdb):
 
 def test_mapIds(mock_orgdb):
     keys = ["1", "10", "100"]
-    
+
     res = mock_orgdb.mapIds(keys, column="SYMBOL", keytype="ENTREZID")
     assert isinstance(res, dict)
     assert res["1"] == "A1BG"
     assert res["10"] == "NAT2"
-    
+
     res_list = mock_orgdb.mapIds(["1"], column="GO", keytype="ENTREZID", multiVals="list")
     assert isinstance(res_list["1"], list)
     assert len(res_list["1"]) == 2
@@ -81,12 +81,12 @@ def test_genes_genomicranges(mock_orgdb):
     gr = mock_orgdb.genes()
     assert isinstance(gr, GenomicRanges)
     assert len(gr) == 2
-    
+
     names = list(gr.names)
     idx = names.index("1")
     assert str(gr.seqnames[idx]) == "chr19"
     assert gr.start[idx] == 58346806
     assert gr.end[idx] == 58353492
-    
+
     assert "gene_id" in gr.mcols.column_names
     assert gr.mcols.get_column("gene_id")[idx] == "1"
