@@ -1,5 +1,4 @@
 import sqlite3
-from typing import Dict, List, Union
 
 from biocframe import BiocFrame
 from genomicranges import GenomicRanges
@@ -68,7 +67,7 @@ class OrgDb:
                     return v
         return "Unknown"
 
-    def _define_tables(self) -> Dict[str, tuple]:
+    def _define_tables(self) -> dict[str, tuple]:
         """Define the mapping between column names and (table, field).
 
         Mirrors .definePossibleTables from R/methods-geneCentricDbs.R
@@ -111,8 +110,7 @@ class OrgDb:
         }
 
         if db_class == "OrgDb":
-            if "ALIAS2PROBE" in mapping:
-                del mapping["ALIAS2PROBE"]
+            mapping.pop("ALIAS2PROBE", None)
 
         if db_class == "ChipDb":
             mapping["PROBEID"] = ("c.probes", "probe_id")
@@ -379,15 +377,15 @@ class OrgDb:
 
         return mapping
 
-    def columns(self) -> List[str]:
+    def columns(self) -> list[str]:
         """List all available columns/keytypes."""
         return list(self._table_map.keys())
 
-    def keytypes(self) -> List[str]:
+    def keytypes(self) -> list[str]:
         """List all available keytypes (same as columns)."""
         return self.columns()
 
-    def keys(self, keytype: str) -> List[str]:
+    def keys(self, keytype: str) -> list[str]:
         """Return keys for the given keytype."""
         if keytype not in self._table_map:
             raise ValueError(f"Invalid keytype: {keytype}. Use columns() to see valid options.")
@@ -404,7 +402,7 @@ class OrgDb:
         except sqlite3.OperationalError:
             return []
 
-    def _expand_cols(self, cols: List[str]) -> List[str]:
+    def _expand_cols(self, cols: list[str]) -> list[str]:
         """Expand columns like GO into GO, EVIDENCE, ONTOLOGY."""
         new_cols = []
         for c in cols:
@@ -419,7 +417,7 @@ class OrgDb:
                     new_cols.append("CHRLOCCHR")
         return list(set(new_cols))  # remove duplicates
 
-    def select(self, keys: Union[List[str], str], columns: Union[List[str], str], keytype: str) -> BiocFrame:
+    def select(self, keys: list[str] | str, columns: list[str] | str, keytype: str) -> BiocFrame:
         """Retrieve data from the database.
 
         Args:
@@ -482,9 +480,7 @@ class OrgDb:
 
         return self._query_as_biocframe(sql, tuple(keys))
 
-    def mapIds(
-        self, keys: Union[List[str], str], column: str, keytype: str, multiVals: str = "first"
-    ) -> Union[dict, list]:
+    def mapIds(self, keys: list[str] | str, column: str, keytype: str, multiVals: str = "first") -> dict | list:
         """Map keys to a specific column. A wrapper around select.
 
         Args:
@@ -543,7 +539,7 @@ class OrgDb:
             return GenomicRanges.empty()
 
         query = """
-        SELECT 
+        SELECT
             g.gene_id,
             c.seqname,
             c.start_location,
