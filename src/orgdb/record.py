@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date, datetime
-from typing import Optional
 
 __author__ = "Jayaram Kancherla"
 __copyright__ = "Jayaram Kancherla"
@@ -14,16 +13,16 @@ class OrgDbRecord:
     """Container for a single OrgDb entry."""
 
     orgdb_id: str
-    release_date: Optional[date]
+    release_date: date | None
     url: str
 
-    species: Optional[str] = None  # e.g. "Hs" or "Hsapiens"
-    id_type: Optional[str] = None  # e.g. "eg" (Entrez Gene) or "tair"
+    species: str | None = None  # e.g. "Hs" or "Hsapiens"
+    id_type: str | None = None  # e.g. "eg" (Entrez Gene) or "tair"
 
-    bioc_version: Optional[str] = None
+    bioc_version: str | None = None
 
     @classmethod
-    def from_config_entry(cls, orgdb_id: str, entry: dict) -> "OrgDbRecord":
+    def from_config_entry(cls, orgdb_id: str, entry: dict) -> OrgDbRecord:
         """Build a record from a ORGDB_CONFIG entry:
         {
             "release_date": "YYYY-MM-DD",  # optional
@@ -33,7 +32,7 @@ class OrgDbRecord:
         url = entry["url"]
 
         date_str = entry.get("release_date")
-        rel_date: Optional[date]
+        rel_date: date | None
         if date_str:
             rel_date = datetime.strptime(date_str, "%Y-%m-%d").date()
         else:
@@ -59,14 +58,11 @@ def _parse_orgdb_id(orgdb_id: str):
     into (species, id_type).
     """
     name = orgdb_id
-    if name.startswith("org."):
-        name = name[len("org.") :]
+    name = name.removeprefix("org.")
 
-    if name.endswith(".db"):
-        name = name[: -len(".db")]
+    name = name.removesuffix(".db")
 
-    if name.endswith(".sqlite"):
-        name = name[: -len(".sqlite")]
+    name = name.removesuffix(".sqlite")
 
     parts = name.split(".")
 
@@ -79,7 +75,7 @@ def _parse_orgdb_id(orgdb_id: str):
     return species, id_type
 
 
-def _parse_bioc_version(url: str) -> Optional[str]:
+def _parse_bioc_version(url: str) -> str | None:
     """Extract the Bioconductor/AnnotationHub-like version from URL.
 
     Example:
