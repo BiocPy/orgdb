@@ -19,4 +19,4 @@ from .orgdb import OrgDb
 from .orgdbregistry import OrgDbRegistry
 from .record import OrgDbRecord
 
-__all__ = ["OrgDb", "OrgDbRegistry", "OrgDbRecord"]
+__all__ = ["OrgDb", "OrgDbRecord", "OrgDbRegistry"]
