@@ -7,7 +7,7 @@
     - https://docs.pytest.org/en/stable/writing_plugins.html
 """
 
-import sqlite3 
+import sqlite3
 from orgdb import OrgDb
 import pytest
 
