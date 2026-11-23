@@ -9,7 +9,7 @@ def registry(tmp_path):
 def test_registry_init(registry):
     assert isinstance(registry, OrgDbRegistry)
     assert "org.Hs.eg.db" in registry.list_orgdb()
-    
+
 def test_get_record(registry):
     rec = registry.get_record("org.Hs.eg.db")
     assert rec.orgdb_id == "org.Hs.eg.db"

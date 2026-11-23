@@ -1,7 +1,7 @@
 import os
 import sqlite3
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 from pybiocfilecache import BiocFileCache
 
@@ -19,7 +19,7 @@ class OrgDbRegistry:
 
     def __init__(
         self,
-        cache_dir: Optional[Union[str, Path]] = None,
+        cache_dir: str | Path | None = None,
         force: bool = False,
     ) -> None:
         """Initialize the OrgDb registry.
@@ -39,7 +39,7 @@ class OrgDbRegistry:
         self._cache_dir.mkdir(parents=True, exist_ok=True)
         self._bfc = BiocFileCache(self._cache_dir)
 
-        self._registry_map: Dict[str, OrgDbRecord] = {}
+        self._registry_map: dict[str, OrgDbRecord] = {}
 
         self._initialize_registry(force=force)
 
@@ -108,7 +108,7 @@ class OrgDbRegistry:
             record = OrgDbRecord.from_config_entry(orgdb_id, entry)
             self._registry_map[orgdb_id] = record
 
-    def list_orgdb(self) -> List[str]:
+    def list_orgdb(self) -> list[str]:
         """List all available OrgDb IDs (e.g., 'org.Hs.eg.db').
 
         Returns:
@@ -205,7 +205,7 @@ class OrgDbRegistry:
         path = self.download(orgdb_id, force=force)
         return OrgDb(path)
 
-    def _get_filepath(self, resource: Any) -> Optional[str]:
+    def _get_filepath(self, resource: Any) -> str | None:
         """Helper to extract absolute path from a BiocFileCache resource."""
         if hasattr(resource, "rpath"):
             rel_path = str(resource.rpath)
